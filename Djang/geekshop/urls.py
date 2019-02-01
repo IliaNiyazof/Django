@@ -15,17 +15,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import include
 from django.conf import settings
 from django.conf.urls.static import static
 import mainapp.views as controller
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
     path('catalog/', controller.catalog, name="nabor"),
     path('goods1/', controller.goods1, name="tovar"),
     path('contakt/', controller.contakt, name="contact"),
     path('', controller.index),
-    path('index/', controller.index, name="King")
+    path('index/', controller.index, name="King"),
+    path('product/', include('mainapp.urls', namespace="product")),
+
+    path('auth/', include('authapp.urls', namespace="auth")),
 ]
 
 if settings.DEBUG:

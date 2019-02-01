@@ -192,3 +192,9 @@ button:hover {
    box-shadow: 0 1px 2px 1px rgba(33, 33, 33, 0.35);
     background-color: gainsboro;
 }
+
+.link_menu {
+    list-style-type: none;
+    color: red;
+    font-family: monospace;
+}

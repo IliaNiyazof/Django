@@ -1,0 +1,13 @@
+{% extends 'authapp/base.html' %}
+
+{% block menu%}
+    <form action="{% url 'auth:edit' %}" method="post">
+        {% csrf_token %}
+        {{ edit_form.as_p }}
+
+        <p>
+            <input type="submit" value="меняем">
+        </p>
+    </form>
+
+{% endblock %}

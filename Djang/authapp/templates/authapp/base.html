@@ -46,6 +46,22 @@
             {% block menu %}
             {% endblock %}
 
+            {% if user.is_authenficated %}
+            <a href="{% url 'auth:edit %}">
+                Мой профиль ({{ user.first_name}})
+            </a>
+            {% endif %}
+
+
+            {% if user.is_authenficated %}
+            <a href="{% url 'auth:logout' %}">
+                выйти
+            </a>
+            {% else %}
+            <a href="{% url 'auth:login' %}">
+                войти
+            </a>
+            {% endif %}
 
 
         </div>
