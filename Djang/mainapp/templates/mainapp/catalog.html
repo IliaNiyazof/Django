@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--/* связан с child1 *///-->
+{% load staticfiles %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    {% block css %}
+    <link rel="stylesheet" href="{% static 'CSS/style.css' %}">
+    {% endblock %}
+
+    {% block js %}
+    {% endblock %}
+
+    <title>
+        {% block title %}
+        {{ page_title}}
+        {% endblock %}
+    </title>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <div class="content">
+        <header>
+
+            <div class="headerr">
+
+                <a href="/index"><img src="{% static 'Images/logomak_logo.png' %}" alt="Logo" width="250"></a>
+
+                <ul class="spiski">
+                    <li><a class="menu" href="{% url 'King'%}">{{  'Главная'|upper }}</a></li>
+                    <li><a class="menu" href="{% url 'nabor'%}">{{  'Каталог'|upper }}</a></li>
+                    <li><a class="menu" href="{% url 'contact'%}">{{  'Контакты'|upper }}</a></li>
+                </ul>
+            </div>
+
+
+        </header>
+
+        <div class="conteiner">
+            {% block menu %}
+            {% endblock %}
+
+        </div>
+    </div>
+
+    {% block footer %}
+    <div class="footer">&copy;Все права защищены {% now "F Y H:i" %}</div>
+    {% endblock %}
+
+
+</div>
+
+</body>
+
+</html>
