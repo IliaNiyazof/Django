@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'CSS/style.css' %}">
+    {% endblock %}
+
+    <title>
+        {% block title %}
+            {{ title|title }}
+        {% endblock %}
+    </title>
+
+    {% block js %}
+    {% endblock %}
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <div class="content">
+
+        {% block menu %}
+
+        {% endblock %}
+
+        <ul class="link_menu">
+            <a class="menu" href="{% url 'catalog:index' %}">Все</a>
+            {% for product in productcategory %}
+                <li class="menu"><a href="{% url 'catalog:productcategory' product.id%}">{{ product.name }}</a></li>
+            {% endfor %}
+        </ul>
+
+        {% block content %}
+
+        {% endblock %}
+
+        <ul class="link_menu">
+            {% for products in data %}
+                <div class="product-box padding-site">
+                    <a href="{% url 'catalog:details' id=products.id%}">
+                        <div class="linia">
+                            <img src="{{ MEDIA_URL }}{{ products.image }}" width="200" height="200"
+                                 alt="{{ products.short_desc }}">
+                            <div class="noname">
+                                <h3 class="nona">{{ products.productcategory.name }}</h3>
+                                <p class="non">{{ products.name }}</p>
+                                <p class="non">{{ products.description }}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </ul>
+
+    </div>
+
+
+    {% block footer %}
+        <div class="footer">&copy;Все права защищены {% now "F Y H:i" %}</div>
+    {% endblock %}
+
+</div>
+</body>
+
+</html>
