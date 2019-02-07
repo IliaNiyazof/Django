@@ -31,9 +31,9 @@
                 <a href="/index"><img src="{% static 'Images/logomak_logo.png' %}" alt="Logo" width="250"></a>
 
                 <ul class="spiski">
-                    <li><a class="menu" href="{% url 'King'%}">{{  'Главная'|upper }}</a></li>
-                    <li><a class="menu" href="{% url 'nabor'%}">{{  'Каталог'|upper }}</a></li>
-                    <li><a class="menu" href="{% url 'contact'%}">{{  'Контакты'|upper }}</a></li>
+                    <li><a class="menu" href="{% url 'King'%}">{{ 'Главная'|upper }}</a></li>
+                    <li><a class="menu" href="{% url 'nabor'%}">{{ 'Каталог'|upper }}</a></li>
+                    <li><a class="menu" href="{% url 'contact'%}">{{ 'Контакты'|upper }}</a></li>
                 </ul>
             </div>
 
@@ -43,6 +43,17 @@
         <div class="conteiner">
             {% block menu %}
             {% endblock %}
+
+            <ul class="link_menu">
+                {% for users in data%}
+                <li>
+                    <a href="{products.href}">
+                        {{users.name}}{{links_menu.category}}{{products.name}}
+                    </a>
+
+                </li>
+                {% endfor %}
+            </ul>
 
         </div>
     </div>

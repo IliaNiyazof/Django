@@ -32,3 +32,10 @@ class ProductCategory(models.Model):
 
     def __str__(self):
         return self.name
+
+class Products(models.Model):
+    name = models.CharField(max_length=30, verbose_name='Name')  #varchar(30)
+    photo = models.ImageField(upload_to='departments', verbose_name='Logo', blank=True)
+
+    def __str__(self):
+        return f"{self.name}"
