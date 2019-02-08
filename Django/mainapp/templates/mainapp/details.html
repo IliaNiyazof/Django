@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'CSS/style.css' %}">
+    {% endblock %}
+
+    <title>
+        {% block title %}
+            {{ title|title }}
+        {% endblock %}
+    </title>
+
+    {% block js %}
+    {% endblock %}
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <div class="content">
+        {% block menu %}
+
+            {% include "mainapp/widgets/menu.html" %}
+
+        {% endblock %}
+
+        <ul class="link_menu">
+            <a class="menu" href="{% url 'catalog:index' %}">Все</a>
+            {% for product in productcategory %}
+                <li class="menu"><a href="{% url 'catalog:productcategory' product.id %}">{{ product.name }}</a></li>
+            {% endfor %}
+        </ul>
+
+        <div class="conteiner">
+
+            <h1>{{ details.name }}</h1>
+            <h2 class="zagolovki">Описание товара</h2>
+            <div class="od">
+                <a href="{{ MEDIA_URL }}{{ details.image }}" target="_blank"> <img class="img1"
+                                                                                   src="
+                                                                                           {{ MEDIA_URL }}{{ details.image }}"
+                                                                                   width="200 "></a>
+                <p class="cratkoe">{{ details.description }} Стоит {{ details.price }}</p>
+            </div>
+
+            {% if request.user.is_authenticated %}
+
+                <a class="buy" href="{% url 'basket:add' id=details.id %}">Купить</a>
+                <a class="buy" href="{% url 'basket:remove' id=details.id %}">Удалить из корзины</a>
+
+            {% endif %}
+
+
+
+
+            <hr>
+        </div>
+
+        <ul class="link_menu">
+            {% for products in products %}
+                <div class="product-box padding-site">
+                    <a href="{% url 'catalog:details' id=products.id %}">
+                        <div class="linia">
+                            <img src="{{ MEDIA_URL }}{{ products.image }}" width="200"
+                                 alt="{{ products.short_desc }}">
+                            <div class="noname">
+                                <h3 class="nona">{{ products.productcategory.name }}</h3>
+                                <p class="non">{{ products.name }}</p>
+                                <p class="non">{{ products.description }}</p>
+                                <p class="non">{{ products.price }}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </ul>
+
+
+    </div>
+
+    {% block footer %}
+        <div class="footer">&copy;Все права защищены {% now "F Y H:i" %}</div>
+    {% endblock %}
+
+
+</div>
+
+</body>
+
+</html>
