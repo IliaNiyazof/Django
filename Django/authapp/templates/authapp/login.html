@@ -1,13 +1,19 @@
 {% extends 'authapp/layout.html' %}
+{% load static %}
 
 {% block content %}
     <form action="{% url 'auth:login' %}" method="post">
 
         {% csrf_token %}
+
+        {% if next %}
+            <input type="hidden" name="next" value="{{ next }}">
+        {% endif %}
+
         {{ login_form.as_p }}
-    
+
         <p>
-            <input type="submit" value="попробовать">
+            <input type="submit" value="Войти">
         </p>
 
     </form>
