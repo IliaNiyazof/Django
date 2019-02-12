@@ -21,17 +21,17 @@ from django.conf.urls.static import static
 from django.conf.urls import include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('', controller.index),
     path('index/', controller.index, name='index'),
-
     path('contakt/', controller.contakt, name='contakt'),
     path('goods1/', controller.goods1, name='goods1'),
 
     path('catalog/', include('mainapp.urls', namespace='catalog')),
     path('basket/', include('basketapp.urls', namespace='basket')),
-
     path('auth/', include('authapp.urls', namespace='auth')),
+
+    path('admin/', include('adminapp.urls', namespace='admin')),
+    # path('admin-django/', admin.site.urls),
 
 ]
 

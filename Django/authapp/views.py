@@ -74,18 +74,18 @@ def edit(request):
     title = 'Профиль'
 
     if request.method == 'POST':
-        update_form = UpdateForm(request.POST, instance=request.user)
+        edit_form = UpdateForm(request.POST, instance=request.user)
 
-        if update_form.is_valid():
-            update_form.save()
+        if edit_form.is_valid():
+            edit_form.save()
             return HttpResponseRedirect(reverse('auth:edit'))
 
     else:
-        update_form = UpdateForm(instance=request.user)
+        edit_form = UpdateForm(instance=request.user)
 
     content = {
         'title': title,
-        'update_form': update_form
+        'update_form': edit_form
     }
 
     return render(request, 'authapp/edit.html', content)

@@ -10,12 +10,22 @@
             <li><a class="menu" href="{% url 'index' %}">Главная</a></li>
             <li><a class="menu" href="{% url 'catalog:index' %}">Каталог</a></li>
             <li><a class="menu" href="{% url 'contakt' %}">Контакты</a></li>
-            <li><a class="menu" href="{% url 'basket:index' %}">Корзина {% if basket %}{{ basket.0.total_quantity}} товаров {{ basket.0.total_cost}} рублей {% endif %}</a></li>
+            <li><a class="menu" href="{% url 'basket:index' %}">Корзина
+                {% if basket %}{{ basket.0.total_quantity }} товаров {{ basket.0.total_cost }} руб. {% endif %}</a>
+            </li>
 
             {% if user.is_authenticated %}
                 <li>
                     <a class="menu" href="{% url 'auth:edit' %}">
                         Мой профиль
+                    </a>
+                </li>
+            {% endif %}
+
+            {% if user.is_superuser %}
+                <li>
+                    <a class="menu" href="{% url 'admin:categories' %}">
+                       Админ-панель
                     </a>
                 </li>
             {% endif %}

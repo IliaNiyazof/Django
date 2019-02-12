@@ -34,7 +34,7 @@ class Product(models.Model):
     price = models.DecimalField(verbose_name='цена продукта', max_digits=8, decimal_places=2, default=0)
     quantity = models.PositiveIntegerField(verbose_name='количество на складе', default=0)
 
-    productcategory = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
+    productcategory = models.ForeignKey(ProductCategory, on_delete=models.CASCADE, related_name='products')
 
     def __str__(self):
         return f"{self.name} {self.productcategory.name}"
