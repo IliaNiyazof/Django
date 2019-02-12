@@ -4,6 +4,7 @@
     <form action="{% url 'auth:edit' %}" method="post">
 
         {% csrf_token %}
+        <p>Редактирование профиля</p>
         {{ update_form.as_p }}
 
         <p>

@@ -30,32 +30,28 @@
 
         {% endblock %}
 
-        <ul class="link_menu">
-            <a class="menu" href="{% url 'catalog:index' %}">Все</a>
-            {% for product in productcategory %}
-                <li class="menu"><a href="{% url 'catalog:productcategory' product.id %}">{{ product.name }}</a></li>
-            {% endfor %}
-        </ul>
+
+
+        {% block menu_dop %}
+
+            {% include "mainapp/widgets/menu_cataloga.html" %}
+
+        {% endblock %}
 
         <div class="conteiner">
 
             <h1>{{ details.name }}</h1>
             <h2 class="zagolovki">Описание товара</h2>
             <div class="od">
-                <a href="{{ MEDIA_URL }}{{ details.image }}" target="_blank"> <img class="img1"
-                                                                                   src="
-                                                                                           {{ MEDIA_URL }}{{ details.image }}"
-                                                                                   width="200 "></a>
+                <a href="{{ MEDIA_URL }}{{ details.image }}" target="_blank"> <img class="img1" src="{{ MEDIA_URL }}{{ details.image }}" width="200 "></a>
                 <p class="cratkoe">{{ details.description }} Стоит {{ details.price }}</p>
             </div>
 
-            {% if request.user.is_authenticated %}
+{#            {% if request.user.is_authenticated %}#}
 
                 <a class="buy" href="{% url 'basket:add' id=details.id %}">Купить</a>
-                <a class="buy" href="{% url 'basket:remove' id=details.id %}">Удалить из корзины</a>
 
-            {% endif %}
-
+{#            {% endif %}#}
 
 
 

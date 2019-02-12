@@ -1,10 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'mainapp/layouts/layouts1.html' %}
 
-</body>
-</html>
+{% load static %}
+
+
+{% block content %}
+    {% if products %}
+        <ul>
+            {% for items in products %}
+                <li>
+                    <p>{{ items.product.name }}</p>
+                    <b>Стоимость-{{ items.product.price }} (Общая-{{ items.product_cost }})</b><br>
+                    <b>Колличество - <span class="basket-item-quantity">{{ items.quantity }}</span></b>
+
+                    <button class="basket-item-add" data-id="{{ items.product.id }}">Добавить</button>
+                    <button class="basket-item-delete" data-id="{{ items.id }}">Удалить</button>
+
+                    <br>
+
+
+                    <a href="{% url 'basket:remove' id=items.id %}">Удалить</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h2>Товаров пока нет</h2>
+    {% endif %}
+
+
+{% endblock %}
+

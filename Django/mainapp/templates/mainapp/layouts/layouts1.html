@@ -8,18 +8,38 @@
 
 {% endblock %}
 
+{% block menu_dop %}
+
+    {% include "mainapp/widgets/menu_cataloga.html" %}
+
+{% endblock %}
+
 {% block content %}
     <div class="conteiner">
 
         <h1>Каталог</h1>
-        <p>Медицинский цветной монитор Sony LMD-2110MD</p>
-        <br>
-        <div class="pa">
-            <div class="one"><a href="{% url 'goods1' %}"><img class="img1" src="{% static 'Images/пробник.jpg' %}"
-                                                               alt="Подробное описание товара" width=150><br>Подробное
-                описание товара</a></div>
-        </div>
-        <br>
-        <hr>
+       <ul class="link_menu">
+            {% for products in data %}
+                <div class="product-box padding-site">
+                    <a href="{% url 'catalog:details' id=products.id %}">
+                        <div class="linia">
+                            <img src="{{ MEDIA_URL }}{{ products.image }}" width="200" height="200"
+                                 alt="{{ products.short_desc }}">
+                            <div class="noname">
+                                <h3 class="nona">{{ products.productcategory.name }}</h3>
+                                <p class="non">{{ products.name }}</p>
+                                <p class="non">{{ products.description }}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </ul>
     </div>
+{% endblock %}
+
+
+{% block js %}
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/basket.js' %}"></script>
 {% endblock %}

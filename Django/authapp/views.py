@@ -3,7 +3,6 @@ from django.http import HttpRequest, HttpResponse
 from django.contrib import auth
 from django.urls import reverse
 
-
 from .forms import LoginForm, RegisterForm, UpdateForm
 
 
@@ -13,37 +12,44 @@ def redirect_to_login(request: HttpRequest):
     return HttpResponseRedirect('/auth/login')
 
 
-def login(request: HttpRequest):
+def login(request):
     title = 'Войти на сайт'
 
     # создать форму для заполнения
-    login_form = LoginForm(data=request.POST)
+    login_form = LoginForm(data=request.POST or None)
+
+    next = request.GET['next'] if 'next' in request.GET.keys() else ''
 
     # проверить данные из request
     if request.method == 'POST' and login_form.is_valid():
         login = request.POST['username']
         password = request.POST['password']
 
+
         # выполнить аутентификацию
         user = auth.authenticate(username=login, password=password)
-
         if user and user.is_active:
             auth.login(request, user)
-            return HttpResponseRedirect('/')
+            if 'next' in request.POST.keys():
+                return HttpResponseRedirect(request.POST['next'])
+            else:
+                return HttpResponseRedirect(reverse('catalog:index'))
+
 
     content = {
         'title': title,
-        'login_form': login_form
+        'login_form': login_form,
+        'next': next,
     }
     return render(request, 'authapp/login.html', content)
 
 
-def logout(request: HttpRequest):
+def logout(request):
     auth.logout(request)
     return HttpResponseRedirect('/')
 
 
-def register(request: HttpRequest):
+def register(request):
     title = 'Регистарция'
 
     if request.method == 'POST':
@@ -64,8 +70,7 @@ def register(request: HttpRequest):
     return render(request, 'authapp/register.html', content)
 
 
-
-def edit(request: HttpRequest):
+def edit(request):
     title = 'Профиль'
 
     if request.method == 'POST':
@@ -84,4 +89,3 @@ def edit(request: HttpRequest):
     }
 
     return render(request, 'authapp/edit.html', content)
-
