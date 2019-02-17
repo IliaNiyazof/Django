@@ -1,0 +1,25 @@
+{% extends 'adminapp/layout_categories.html' %}
+
+{% block content %}
+    <hr>
+
+    <h1>{{ model.name }}</h1>
+
+    <a href="{% url 'admin:categories_delete' id=model.id %}">Удалить</a>
+    <a href="{% url 'admin:categories_update' id=model.id %}">Редактировать</a>
+
+    <p>{{ model.description }}</p>
+
+    <h2>Товары в категории</h2>
+
+    <ul>
+        {% for product in products %}
+            <li>
+                <a href="{% url 'admin:products_read' id=product.id %}">
+                    {{ product.name }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+    <p><a href="{% url 'admin:products_category' category=model.id %}">Все товары</a></p>
+{% endblock %}
