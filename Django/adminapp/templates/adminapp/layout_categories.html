@@ -5,6 +5,11 @@
 <head>
     <meta charset="UTF-8">
 
+    {% block css %}
+        <link rel="stylesheet" href="{% static 'CSS/style.css' %}">
+    {% endblock %}
+
+
     <title>
         {% block title %}
             {{ title|title }}

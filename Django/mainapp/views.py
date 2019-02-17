@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpRequest
 from .models import ProductCategory, Product
 from basketapp.models import Basket
-
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 def index(request: HttpRequest):
@@ -18,7 +18,7 @@ def index(request: HttpRequest):
     })
 
 
-def catalog(request: HttpRequest, id=None):
+def catalog(request: HttpRequest, id=None, page=1):
     title = 'Каталог'
     product = ProductCategory.objects.all()
 
@@ -27,11 +27,21 @@ def catalog(request: HttpRequest, id=None):
     else:
         products = Product.objects.all()
 
+    provider = Paginator(products, 1)
+
+    try:
+        products_provider = provider.page(page)
+    except PageNotAnInteger:
+        products_provider = provider.page(1)
+    except EmptyPage:
+        products_provider = provider.page(provider.num_pages)
+
     return render(request, 'mainapp/layouts/layouts1.html', {
         'title': title,
-        'data': products,
+        'provider': products_provider,
         'productcategory': product,
-        'basket': get_current_user(request.user)
+        'basket': get_current_user(request.user),
+
 
     })
 

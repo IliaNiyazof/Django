@@ -6,13 +6,13 @@
     <h1>{{ model.name }}</h1>
 
     <a href="{% url 'admin:categories_delete' id=model.id %}">Удалить</a>
-    <a href="{% url 'admin:categories_update' id=model.id %}">Редактировать</a>
+    <a href="{% url 'admin:categories_update' id=model.pk %}">Редактировать</a>
 
     <p>{{ model.description }}</p>
 
     <h2>Товары в категории</h2>
 
-    <ul>
+    <ul class="link_menu">
         {% for product in products %}
             <li>
                 <a href="{% url 'admin:products_read' id=product.id %}">
@@ -20,6 +20,10 @@
                 </a>
             </li>
         {% endfor %}
+
+        <a href="{% url 'admin:products_delete' id=model.id %}">Удалить</a>
+        <a href="{% url 'admin:products_update' id=model.id %}">Редактировать</a>
+
     </ul>
     <p><a href="{% url 'admin:products_category' category=model.id %}">Все товары</a></p>
 {% endblock %}

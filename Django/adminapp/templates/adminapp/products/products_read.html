@@ -1,0 +1,24 @@
+{% extends 'adminapp/layout_categories.html' %}
+
+{% block content %}
+
+    <h1>{{ product.name }}</h1>
+    <ul>
+        {% for model in model %}
+            <h1>{{ model.name }}</h1>
+            <div>
+                <div>
+                    <img src="{{ MEDIA_URL }}{{ model.image }}" width="200"
+                         alt="{{ model.short_desc }}">
+                    <div>
+                        <h3>{{ model.productcategory.name }}</h3>
+                        <p>{{ model.name }}</p>
+                        <p>{{ model.description }}</p>
+                        <p>{{ model.price }}</p>
+                    </div>
+                </div>
+
+            </div>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -53,6 +53,7 @@ a:hover {
     justify-content: flex-end;
     text-align: center;
     width: 100%;
+    list-style-type: none;
 }
 
 .menu-two {
@@ -270,3 +271,14 @@ button:hover {
 .sd {
     padding: 12px;
 }
+
+.user_login {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+
+
