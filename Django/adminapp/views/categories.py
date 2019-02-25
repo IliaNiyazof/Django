@@ -20,7 +20,7 @@ def create(request: HttpRequest):
 
 
 @user_passes_test(lambda user: user.is_superuser)
-def read(request: HttpRequest, id):
+def read(request: HttpRequest, id=None):
     # model = ProductCategory.objects.get(pk=id)
     model = get_object_or_404(ProductCategory, pk=id)
     products = model.products.all()  # only 5 last
@@ -33,21 +33,23 @@ def read(request: HttpRequest, id):
 
 @user_passes_test(lambda user: user.is_superuser)
 def update(request: HttpRequest, id):
-    model = get_object_or_404(ProductCategory, pk=id)
+    title = 'категории/редактирование'
 
-    form = CategoryEditForm(request.POST, request.FILES, instance=model)
-
-    if form.is_valid():
-        form.save()
+    edit_category = get_object_or_404(ProductCategory, pk=id)
+    if request.method == 'POST':
+        edit_form = CategoryEditForm(request.POST, request.FILES, instance=edit_category)
+        if edit_form.is_valid():
+            edit_form.save()
+            return HttpResponseRedirect(reverse('admin:categories_update', args=[edit_category.pk]))
     else:
-        form = CategoryEditForm(instance=model)
+        edit_form = CategoryEditForm(instance=edit_category)
 
-    return render(request, 'adminapp/categories/update.html', {
-        'form': form,
-    })
+    content = {'title': title, 'update_form': edit_form}
+
+    return render(request, 'adminapp/categories/update.html', content)
 
 
-@user_passes_test(lambda user: user.is_superuser and user.is_active)
+@user_passes_test(lambda user: user.is_superuser)
 def delete(request: HttpRequest, id):
     model = get_object_or_404(ProductCategory, pk=id)
 

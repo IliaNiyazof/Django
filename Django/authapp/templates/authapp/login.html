@@ -2,23 +2,26 @@
 {% load static %}
 
 {% block content %}
-    <form action="{% url 'auth:login' %}" method="post">
+    <div class="user_login">
+        <form action="{% url 'auth:login' %}" method="post">
 
-        {% csrf_token %}
+            {% csrf_token %}
 
-        {% if next %}
-            <input type="hidden" name="next" value="{{ next }}">
-        {% endif %}
+            {% if next %}
+                <input type="hidden" name="next" value="{{ next }}">
+            {% endif %}
 
-        {{ login_form.as_p }}
+            {{ login_form.as_p }}
 
-        <p>
-            <input type="submit" value="Войти">
-        </p>
+            <p>
+                <input type="submit" value="Войти">
+            </p>
 
-    </form>
-
-    <a href="{% url 'auth:register' %}">Регистрация</a>
+        </form>
+        <div class = "prosto">
+            <a href="{% url 'auth:register' %}">Регистрация</a>
+        </div>
+    </div>
 {% endblock %}
 
 

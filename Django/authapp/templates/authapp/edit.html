@@ -1,15 +1,17 @@
 {% extends 'authapp/layout.html' %}
 
 {% block content %}
-    <form action="{% url 'auth:edit' %}" method="post">
+    <div class="user_login">
+        <form action="{% url 'auth:edit' %}" method="post">
 
-        {% csrf_token %}
-        <p>Редактирование профиля</p>
-        {{ update_form.as_p }}
+            {% csrf_token %}
+            <p>Редактирование профиля</p>
+            {{ update_form.as_p }}
 
-        <p>
-            <input type="submit" value="сохранить">
-        </p>
+            <p>
+                <input type="submit" value="сохранить">
+            </p>
 
-    </form>
+        </form>
+    </div>
 {% endblock %}

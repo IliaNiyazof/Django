@@ -24,11 +24,6 @@ def add(request: HttpRequest, id: int):
             'quantity': Basket.objects.get(product__id=id).quantity
         })
 
-    if request.is_ajax():
-        return JsonResponse({
-            'quantity': Basket.objects.get(product__id=id).quantity
-        })
-
     if 'login' in request.META.get('HTTP_REFERER'):
         return HttpResponseRedirect('/catalog/details/' + str(product.id))
     else:

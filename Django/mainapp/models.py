@@ -11,6 +11,8 @@ class Person(models.Model):
     name = models.CharField(max_length=30, verbose_name='Имя')
     last_name = models.CharField(max_length=30, verbose_name='Фамилия')
     age = models.PositiveIntegerField(verbose_name='Возраст', default=0)
+    image = models.ImageField(upload_to='users_images', blank=True)
+
 
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
 
