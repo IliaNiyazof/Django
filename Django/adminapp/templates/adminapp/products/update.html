@@ -1,5 +1,8 @@
 {% extends 'adminapp/layout_categories.html' %}
 
+{% load staticfiles %}
+
+
 {% block content %}
     <div class="new_category_form">
         <form class="form-horizontal" method="post" enctype="multipart/form-data">
@@ -7,10 +10,10 @@
             {{ update_form.as_p }}
             <input class="form-control" type="submit" value="сохранить">
         </form>
-
-            <a href="{% url 'admin:categories' %}">
-                к списку категорий
+        <button class="btn btn-round form-control last">
+            <a href="{% url 'admin:products' category.pk %}">
+                к списку продуктов
             </a>
-
+        </button>
     </div>
 {% endblock %}

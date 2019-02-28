@@ -6,3 +6,5 @@ register = template.Library()
 @register.filter(name='rubles')
 def format_money(string_value):
     return f"{string_value} руб."
+
+# смотри в details

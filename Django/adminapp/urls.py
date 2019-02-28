@@ -1,27 +1,25 @@
-from django.urls import path
+from django.urls import re_path
 
 from adminapp.views import users, categories, products
-from adminapp.controllers import user, product, categorie
+from adminapp.controllers import user, categori, product
 
 app_name = 'adminapp'
 
 urlpatterns = [
-    path('users/index', user.UserListView.as_view(), name='users_index'),
-    path('users/create/', user.UserCreateView.as_view(), name='users_create'),
-    path('users/update/<int:pk>', user.UserUpdateView.as_view(), name='users_update'),
-    path('users/delete/<int:pk>', user.UserDeleteView.as_view(), name='users_delete'),
+    re_path(r'^users/index/$', user.UserListView.as_view(), name='users_index'),
+    re_path(r'^users/create/$', user.UserCreateView.as_view(), name='users_create'),
+    re_path(r'^users/update/<int:pk>/$', user.UserUpdateView.as_view(), name='users_update'),
+    re_path(r'^users/delete/<int:pk>/$', user.UserDeleteView.as_view(), name='users_delete'),
 
     # categories (CRUD)
-    path('categories/index', categorie.CategoriesListView.as_view(), name='categories'),
-    path('categories/create/', categories.create, name='categories_create'),  # admin:user_create
-    path('categories/read/<int:id>', categories.read, name='category_read'),
-    path('categories/update/<int:id>', categories.update, name='categories_update'),
-    path('categories/delete/<int:id>', categories.delete, name='categories_delete'),
+    re_path(r'^categories/create/$', categori.ProductCategoryCreateView.as_view(), name='category_create'),
+    re_path(r'^categories/read/$', categori.ProductCategoryReadView.as_view(), name='categories'),
+    re_path(r'^categories/update/<int:pk>/$', categori.ProductCategoryUpdateView.as_view(), name='category_update'),
+    re_path(r'^categories/delete/<int:pk>/$', categori.ProductCategoryDeleteView.as_view(), name='category_delete'),
 
-    # products (CRUD, list_by_category)
-    path('products/create/', products.create, name='products_create'),  # admin:user_create
-    path('products/read/<int:id>', products.read, name='products_read'),
-    path('products/list/<int:category>', product.ProductListView.as_view(), name='products_category'),
-    path('products/update/<int:id>', products.update, name='products_update'),
-    path('products/delete/<int:id>', products.delete, name='products_delete'),
+    re_path(r'^products/create/category/<int:pk>/$', products.product_create, name='product_create'),
+    re_path(r'^products/read/category/<int:pk>/$', products.products, name='products'),
+    re_path(r'^products/read/<int:pk>/$', product.ProductDetailView.as_view(), name='product_read'),
+    re_path(r'^products/update/<int:pk>/$', products.product_update, name='product_update'),
+    re_path(r'^products/delete/<int:pk>/$', products.product_delete, name='product_delete'),
 ]

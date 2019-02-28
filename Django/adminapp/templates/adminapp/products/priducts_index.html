@@ -1,23 +1,39 @@
 {% extends 'adminapp/layout_categories.html' %}
 
+{% load staticfiles %}
+
+
 {% block content %}
+    <div class="products_list">
+        <a href={% url 'admin:product_create' category.pk %}>новый продукт</a>
 
-    <h1>Товары</h1>
-    <ul>
-        {% for models in object_list %}
-            <div>
-                <div>
-                    <img src="{{ MEDIA_URL }}{{ models.image }}" width="200"
-                         alt="{{ models.short_desc }}">
-                    <div>
-                        <h3>{{ models.productcategory.name }}</h3>
-                        <p>{{ models.name }}</p>
-                        <p>{{ models.description }}</p>
-                        <p>{{ models.price }}</p>
-                    </div>
+
+        {% for object in objects %}
+            <div class="product_record {% if not object.is_active %}not_active{% endif %}">
+                <img src="/media/{{ object.image|default:'products_images/default.jpg' }}" alt="{{ object.name }}"
+                     width="200px">
+                <div class="product_name">
+                    {{ object.name|title }}
                 </div>
+                <div class="product_actions">
+                    <li class="link_menu"><a href={% url 'admin:product_read' object.pk %}>подробнее</a>
 
+                        <a href={% url 'admin:product_update' object.pk %}>редактировать</a>
+
+                        <a href={% url 'admin:product_delete' object.pk %}>удалить</a></li>
+
+
+                </div>
+                <div class="summary">
+                    <b>цена</b>
+                    <p>{{ object.price }} руб</p>
+                    <b>количество</b>
+                    <p>{{ object.quantity }}</p>
+                </div>
+                <div class="product_desc">
+                    {{ object.short_desc|title }}
+                </div>
             </div>
         {% endfor %}
-    </ul>
+    </div>
 {% endblock %}

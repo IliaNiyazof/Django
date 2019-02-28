@@ -200,6 +200,7 @@ button:hover {
     color: red;
     font-family: monospace;
     justify-content: space-around;
+    font-size: 20px;
 }
 
 

@@ -1,7 +1,7 @@
 from django.core.management.base import BaseCommand
 # from django.contrib.auth.models import User
 from mainapp.models import ProductCategory
-from authapp.models import CustomUser
+from authapp.models import ShopUser
 
 
 class Command(BaseCommand):
@@ -16,6 +16,6 @@ class Command(BaseCommand):
         #     'faf', 'test@test.ru', 'root'
         # )
 
-        CustomUser.objects.create_superuser(
+        ShopUser.objects.create_superuser(
             'faf', 'test@test.ru', 'root', age=20
         )
