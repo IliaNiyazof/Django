@@ -1,8 +1,14 @@
+from django import forms
 from mainapp.models import ProductCategory
-from django.forms import ModelForm
 
 
-class CategoryEditForm(ModelForm):
+class ProductCategoryEditForm(forms.ModelForm):
     class Meta:
         model = ProductCategory
         fields = '__all__'
+
+    def __init__(self, *args, **kwargs):
+        super(ProductCategoryEditForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
+            field.help_text = ''

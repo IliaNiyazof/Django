@@ -19,18 +19,19 @@ import mainapp.views as controller
 from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import include
+from django.urls import re_path
 
 urlpatterns = [
-    path('', controller.index),
-    path('index/', controller.index, name='index'),
-    path('contakt/', controller.contakt, name='contakt'),
-    path('goods1/', controller.goods1, name='goods1'),
+    re_path(r'^$', controller.index),
+    re_path(r'^index/', controller.index, name='index'),
+    re_path(r'^contakt/', controller.contakt, name='contakt'),
+    re_path(r'^goods1/', controller.goods1, name='goods1'),
 
-    path('catalog/', include('mainapp.urls', namespace='catalog')),
-    path('basket/', include('basketapp.urls', namespace='basket')),
-    path('auth/', include('authapp.urls', namespace='auth')),
+    re_path(r'^catalog/', include('mainapp.urls', namespace='catalog')),
+    re_path(r'^basket/', include('basketapp.urls', namespace='basket')),
+    re_path(r'^auth/', include('authapp.urls', namespace='auth')),
 
-    path('admin/', include('adminapp.urls', namespace='admin')),
+    re_path(r'^admin/', include('adminapp.urls', namespace='admin')),
     # path('admin-django/', admin.site.urls),
 
 ]
