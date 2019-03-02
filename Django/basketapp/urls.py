@@ -6,6 +6,6 @@ app_name = 'basketapp'
 
 urlpatterns = [
     re_path(r'^$', controller.index, name='index'),
-    re_path(r'^add/<int:id>/$', controller.add, name='add'),
-    re_path(r'^remove/<int:id>/$', controller.remove, name='remove'),
+    re_path(r'^add/(?P<pk>\d+)/$', controller.add, name='add'),
+    re_path(r'^remove/(?P<pk>\d+)/$', controller.remove, name='remove'),
 ]

@@ -52,7 +52,7 @@
 
             {#            {% if request.user.is_authenticated %}#}
 
-            <a class="buy" href="{% url 'basket:add' id=details.id %}">Купить</a>
+            <a class="buy" href="{% url 'basket:add' pk=details.id %}">Купить</a>
 
             {#            {% endif %}#}
 
@@ -63,7 +63,7 @@
         <ul class="link_menu">
             {% for products in products %}
                 <div class="product-box padding-site">
-                    <a href="{% url 'catalog:details' id=products.id %}">
+                    <a href="{% url 'catalog:details' pk=products.id %}">
                         <div class="linia">
                             <img src="{{ MEDIA_URL }}{{ products.image }}" width="200"
                                  alt="{{ products.short_desc }}">

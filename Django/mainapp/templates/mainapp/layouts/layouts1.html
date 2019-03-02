@@ -1,3 +1,4 @@
+
 {% extends 'mainapp/catalog.html' %}
 
 {% load static %}
@@ -8,16 +9,11 @@
 
 {% endblock %}
 
-{% block menu_dop %}
-
-    {% include "mainapp/widgets/menu_cataloga.html" %}
-
-{% endblock %}
-
 {% block content %}
     <div class="conteiner">
 
-        <h1>Каталог</h1>
+        <h1>Категории товаров</h1>
+    {% include "mainapp/widgets/menu_cataloga.html" %}
         <ul class="link_menu">
             {% if provider.has_previous %}
                 <li class="menu">
@@ -36,7 +32,7 @@
         <ul class="link_menu">
             {% for products in provider %}
                 <div class="product-box padding-site">
-                    <a href="{% url 'catalog:details' id=products.id %}">
+                    <a href="{% url 'catalog:details' pk=products.id %}">
                         <div class="linia">
                             <img src="{{ MEDIA_URL }}{{ products.image }}" width="200" height="200"
                                  alt="{{ products.short_desc }}">

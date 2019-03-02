@@ -4,6 +4,7 @@ from .models import ProductCategory, Product
 from basketapp.models import Basket
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+
 # Create your views here.
 def index(request: HttpRequest):
     title = 'Главная'
@@ -12,18 +13,17 @@ def index(request: HttpRequest):
 
     return render(request, 'mainapp/layouts/layouts.html', {
         'title': title,
-        'data': products,
-        'basket': get_current_user(request.user)
+        'data': products
 
     })
 
 
-def catalog(request: HttpRequest, id=None, page=1):
+def catalog(request: HttpRequest, pk=None, page=1):
     title = 'Каталог'
     product = ProductCategory.objects.all()
 
-    if id is not None:
-        products = Product.objects.filter(productcategory__pk=id)
+    if pk is not None:
+        products = Product.objects.filter(productcategory__pk=pk)
     else:
         products = Product.objects.all()
 
@@ -40,9 +40,6 @@ def catalog(request: HttpRequest, id=None, page=1):
         'title': title,
         'provider': products_provider,
         'productcategory': product,
-        'basket': get_current_user(request.user),
-
-
     })
 
 
@@ -51,7 +48,6 @@ def contakt(request: HttpRequest):
 
     return render(request, 'mainapp/layouts/layouts2.html', {
         'title': title,
-        'basket': get_current_user(request.user)
 
     })
 
@@ -61,15 +57,14 @@ def goods1(request: HttpRequest):
 
     return render(request, 'mainapp/layouts/layouts3.html', {
         'title': title,
-        'basket': get_current_user(request.user)
 
     })
 
 
-def product_detail(request: HttpRequest, id=None):
+def product_detail(request: HttpRequest, pk=None):
     if id is not None:
         # details = Product.objects.get(pk=id)
-        details = get_object_or_404(Product, pk=id)
+        details = get_object_or_404(Product, pk=pk)
         products = Product.objects.filter(productcategory__pk=details.productcategory_id)
         product = ProductCategory.objects.all()
 
@@ -78,7 +73,6 @@ def product_detail(request: HttpRequest, id=None):
         'product': product,
         'details': details,
         'products': products,
-        'basket': get_current_user(request.user)
     }
 
     return render(request, 'mainapp/details.html', context)

@@ -1,17 +1,17 @@
 {% extends 'authapp/layout.html' %}
 
 {% block content %}
-    <div class="user_login">
-        <form action="{% url 'auth:edit' %}" method="post">
+    <form class="user_login" action="{% url 'auth:edit' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ edit_form.as_p }}
+        {{ profile_form.as_p }}
+        <input class="form-control" type="submit" value="сохранить">
+        <div class="btn btn-round form-control last">
+            <a href="{% url 'index' %}" class="">
+                на главную
+            </a>
+        </div>
+        <div class="user_avatar"><img src="/media/{{ user.avatar }}"></div>
+    </form>
 
-            {% csrf_token %}
-            <p>Редактирование профиля</p>
-            {{ update_form.as_p }}
-
-            <p>
-                <input type="submit" value="сохранить">
-            </p>
-
-        </form>
-    </div>
 {% endblock %}

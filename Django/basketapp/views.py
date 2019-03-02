@@ -6,10 +6,10 @@ from basketapp.models import Basket
 
 
 @login_required
-def add(request: HttpRequest, id: int):
-    product = get_object_or_404(Product, pk=id)
+def add(request: HttpRequest, pk: int):
+    product = get_object_or_404(Product, pk=pk)
 
-    exists_item = Basket.objects.filter(product__id=id, user=request.user)
+    exists_item = Basket.objects.filter(product__pk=pk, user=request.user)
 
     if exists_item:
         exists_item[0].quantity += 1
@@ -21,7 +21,7 @@ def add(request: HttpRequest, id: int):
 
     if request.is_ajax():
         return JsonResponse({
-            'quantity': Basket.objects.get(product__id=id).quantity
+            'quantity': Basket.objects.get(product__pk=pk).quantity
         })
 
     if 'login' in request.META.get('HTTP_REFERER'):
@@ -31,8 +31,8 @@ def add(request: HttpRequest, id: int):
 
 
 @login_required
-def remove(request: HttpRequest, id: int):
-    item = get_object_or_404(Basket, pk=id)
+def remove(request: HttpRequest, pk: int):
+    item = get_object_or_404(Basket, pk=pk)
     item.delete()
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
