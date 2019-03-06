@@ -18,8 +18,13 @@
             </p>
 
         </form>
-        <div class = "prosto">
+        <div class="prosto">
             <a href="{% url 'auth:register' %}">Регистрация</a>
+        </div>
+        <div class="btn btn-round form-control">
+            <a href="{% url 'social:begin' 'vk-oauth2' %}?next=/">
+                Вход через ВКонтакте
+            </a>
         </div>
     </div>
 {% endblock %}

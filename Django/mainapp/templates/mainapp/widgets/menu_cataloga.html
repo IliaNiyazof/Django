@@ -1,6 +1,5 @@
 <ul class="link_menu">
-    <a class="menu" href="{% url 'catalog:index' %}">Все товары</a>
     {% for product in productcategory %}
-        <li class="menu"><a href="{% url 'catalog:productcategory' product.id %}">{{ product.name }}</a></li>
+        <li class="menu"><a href="{% url 'catalog:productcategory' product.pk %}">{{ product.name }}</a></li>
     {% endfor %}
 </ul>

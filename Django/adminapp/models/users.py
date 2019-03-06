@@ -1,8 +1,8 @@
 from authapp.models import ShopUser
-from django.forms import ModelForm
+from authapp.forms import UpdateForm
 
 
-class PersonEditForm(ModelForm):
+class ShopUserAdminEditForm(UpdateForm):
     class Meta:
         model = ShopUser
         fields = '__all__'

@@ -33,6 +33,7 @@ urlpatterns = [
 
     re_path(r'^admin/', include('adminapp.urls', namespace='admin')),
     # path('admin-django/', admin.site.urls),
+    re_path(r'^', include('social_django.urls', namespace='social')),
 
 ]
 

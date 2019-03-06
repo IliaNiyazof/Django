@@ -19,6 +19,16 @@ def products(request, pk):
     return render(request, 'adminapp/products/priducts_index.html', content)
 
 
+# def product_read(request, pk):
+#     title = 'продукт/подробнее'
+#
+#     product = get_object_or_404(Product, pk=pk)
+#
+#     content = {'title': title, 'object': product, }
+#
+#     return render(request, 'adminapp/product_read.html', content)
+
+
 def product_create(request, pk):
     title = 'продукт/создание'
     category = get_object_or_404(ProductCategory, pk=pk)
@@ -46,7 +56,7 @@ def product_update(request, pk):
         edit_form = ProductEditForm(request.POST, request.FILES, instance=edit_product)
         if edit_form.is_valid():
             edit_form.save()
-            return HttpResponseRedirect(reverse('admin:product_update', args=[edit_product.pk]))
+            return HttpResponseRedirect(reverse('admin:products', args=[edit_product.pk]))
     else:
         edit_form = ProductEditForm(instance=edit_product)
 
