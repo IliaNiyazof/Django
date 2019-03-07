@@ -14,8 +14,6 @@
         {% endblock %}
     </title>
 
-    {% block js %}
-    {% endblock %}
 
 </head>
 
@@ -36,7 +34,11 @@
     {% block footer %}
     <div class="footer">&copy;Все права защищены {% now "F Y H:i" %}</div>
     {% endblock %}
+</div>
 
+{% block js %}
+
+{% endblock %}
 </body>
 
 </html>

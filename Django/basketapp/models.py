@@ -16,7 +16,7 @@ class Basket(models.Model):
 
     @property
     def product_cost(self):
-        return  self.product.price * self.quantity
+        return self.product.price * self.quantity
 
     @property
     def total_quantity(self):
@@ -25,10 +25,13 @@ class Basket(models.Model):
 
         return total
 
-
     @property
     def total_cost(self):
         items = Basket.objects.filter(user=self.user)
         total = sum([x.product_cost for x in items])
 
         return total
+
+    @staticmethod
+    def get_items(user):
+        return Basket.objects.filter(user=user).order_by('product__productcategory')

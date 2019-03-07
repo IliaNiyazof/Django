@@ -15,6 +15,12 @@
         {% endblock %}
     </title>
 
+    {% block js %}
+        <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+        <script src="{% static 'js/basket.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    {% endblock %}
+
 
 </head>
 
@@ -27,7 +33,7 @@
         {% block menu %}
 
         {% endblock %}
-    
+
         {% block content %}
 
         {% endblock %}
@@ -42,9 +48,7 @@
 
 </div>
 
-{% block js %}
 
-{% endblock %}
 </body>
 
 </html>
