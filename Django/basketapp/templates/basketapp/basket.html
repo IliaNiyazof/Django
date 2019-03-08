@@ -19,6 +19,7 @@
 
 
                     <a href="{% url 'basket:remove' pk=items.id %}">Удалить</a>
+                    <a href="{% url 'order:order_create'%}">Сделать заказ</a>
                 </li>
             {% endfor %}
         </ul>

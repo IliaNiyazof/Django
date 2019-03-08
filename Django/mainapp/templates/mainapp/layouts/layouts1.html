@@ -1,4 +1,3 @@
-
 {% extends 'mainapp/catalog.html' %}
 
 {% load static %}
@@ -13,7 +12,7 @@
     <div class="conteiner">
 
         <h1>Категории товаров</h1>
-    {% include "mainapp/widgets/menu_cataloga.html" %}
+        {% include "mainapp/widgets/menu_cataloga.html" %}
         <ul class="link_menu">
             {% if provider.has_previous %}
                 <li class="menu">
@@ -21,7 +20,7 @@
                 </li>
             {% endif %}
             <li class="menu">
-                <p>page {{ provider.number }} of {{ provider.paginator.num_pages}}</p>
+                <p>page {{ provider.number }} of {{ provider.paginator.num_pages }}</p>
             </li>
             {% if provider.has_next %}
                 <li class="menu">
@@ -51,7 +50,3 @@
 {% endblock %}
 
 
-{% block js %}
-    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
-    <script src="{% static 'js/basket.js' %}"></script>
-{% endblock %}
