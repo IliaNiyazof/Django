@@ -33,5 +33,5 @@ class Basket(models.Model):
         return total
 
     @staticmethod
-    def get_items(user):
-        return Basket.objects.filter(user=user).order_by('product__productcategory')
+    def get_items(pk):
+        return Basket.objects.first(pk=pk).first()
