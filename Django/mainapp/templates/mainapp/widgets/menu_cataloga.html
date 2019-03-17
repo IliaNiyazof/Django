@@ -1,5 +1,0 @@
-<ul class="link_menu">
-    {% for product in productcategory %}
-        <li class="menu"><a href="{% url 'catalog:productcategory' product.pk %}">{{ product.name }}</a></li>
-    {% endfor %}
-</ul>
