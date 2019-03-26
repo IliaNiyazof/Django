@@ -1,0 +1,15 @@
+{% extends 'adminapp/layout_categories.html' %}
+
+{% block content %}
+    <hr>
+    <form class="form-horizontal" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input  type="submit" value="сохранить">
+    </form>
+
+        <a href="{% url 'admin:users_index' %}">
+            к списку пользователей
+        </a>
+
+{% endblock %}

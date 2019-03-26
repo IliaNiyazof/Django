@@ -1,0 +1,14 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: 
+ =?utf-8?b?0J/QvtC00YLQstC10YDQttC00LXQvdC40LUg0YPRh9C10YLQvdC+0Lkg0LfQsNC/?=
+ =?utf-8?b?0LjRgdC4IHF3ZXJ0eXU=?=
+From: django@geekshop.local
+To: tertw@test.ru
+Date: Thu, 28 Feb 2019 07:03:45 -0000
+Message-ID: <155133742557.10760.9892925335439312827@DESKTOP-VQL2S5R>
+
+Для подтверждения учетной записи qwertyu     на портале http://localhost:8000 перейдите по ссылке:     
+http://localhost:8000/auth/verify/tertw@test.ru/0ea46abb42ea491d5328fa0e1bba8ca886a067c1/
+-------------------------------------------------------------------------------

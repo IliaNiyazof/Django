@@ -1,0 +1,67 @@
+{% load static %}
+
+<header>
+
+    <div class="headerr">
+
+        <a href="{% url 'index' %}"><img src="{% static 'Images/logomak_logo.png' %}" alt="Logo" width="250"></a>
+
+        <ul class="spiski">
+            <li><a class="menu" href="{% url 'index' %}">Главная</a></li>
+            <li><a class="menu" href="{% url 'catalog:index' %}">Каталог</a></li>
+            <li><a class="menu" href="{% url 'contakt' %}">Контакты</a></li>
+            <li><a class="menu" href="{% url 'basket:index' %}">Корзина
+                {% if basket %}{{ basket.0.total_quantity }} товаров {{ basket.0.total_cost }} руб. {% endif %}</a>
+            </li>
+
+            {% if user.is_authenticated %}
+                <li>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" href="" data-toggle="dropdown">
+                            {{ user.first_name|default:'Пользователь' }}
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{% url 'auth:edit' %}">
+                                    профиль
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'ordersapp:orders_list' %}">
+                                    заказы
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            {% endif %}
+
+
+            {% if user.is_superuser %}
+                <li>
+                    <a class="menu" href="{% url 'admin:categories' %}">
+                        Админ-панель
+                    </a>
+                </li>
+            {% endif %}
+
+
+            <li>
+                {% if user.is_authenticated %}
+                    <a class="menu" href="{% url 'auth:logout' %}">
+                        Выйти
+                    </a>
+                {% else %}
+                    <a class="menu" href="{% url 'auth:login' %}">
+                        Войти
+                    </a>
+                {% endif %}
+            </li>
+
+
+        </ul>
+    </div>
+
+
+</header>

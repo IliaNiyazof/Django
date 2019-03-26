@@ -1,0 +1,36 @@
+{% extends 'mainapp/contakt.html' %}
+
+{% load static %}
+
+{% block menu %}
+
+{% include "mainapp/widgets/menu.html" %}
+
+{% endblock %}
+
+
+{% block content %}
+<div class="conteiner">
+
+    <form action="#">
+        <h1>Напишите нам:</h1>
+        Имя <input class="cupre" type="text" placeholder="Илья"><br>
+        Email <input class="cupre" type="email" placeholder="Hi@mail.ru"><br>
+        Тема <input class="cupre" type="text" placeholder="У меня есть вопрос"><br>
+        Если у вас есть вопрос, напишит его сюда пожалуйста <br> <textarea class="text"></textarea><br>
+        <button type="submit">Отправить</button>
+        <button type="reset">Удалить</button>
+    </form>
+    <h3>Адрес</h3>
+    <p>Наш номер телефона: 89999999999</p>
+    <p>Наш адрес: г.Москва, мкр.Беговой, ул.Самаяновая, дом 30</p>
+    <p>Наша почта: Novaya@mail.ru</p>
+    <script type="text/javascript" charset="utf-8" async
+            src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A9444049044d51d9b1304e01c6bf334936f17efbf6177ac4109e39a6cefca7041&amp;width=100%&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
+    <hr>
+</div>
+{% endblock %}
+{% block js %}
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+{% endblock %}

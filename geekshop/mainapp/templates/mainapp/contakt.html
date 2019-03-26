@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    {% block css %}
+    <link rel="stylesheet" href="{% static 'CSS/style.css' %}">
+    {% endblock %}
+
+    <title>
+        {% block title %}
+        {{ title|title }}
+        {% endblock %}
+    </title>
+
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+    <div class="content">
+        {% block menu %}
+
+        {% endblock %}
+
+        {% block content %}
+
+        {% endblock %}
+    </div>
+
+    {% block footer %}
+    <div class="footer">&copy;Все права защищены {% now "F Y H:i" %}</div>
+    {% endblock %}
+</div>
+
+{% block js %}
+
+{% endblock %}
+</body>
+
+</html>
