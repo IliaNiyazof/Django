@@ -1,0 +1,20 @@
+{% extends 'adminapp/layout_categories.html' %}
+
+
+{% load staticfiles %}
+
+
+{% block content %}
+    <hr>
+    <div class="user_delete">
+        <b>Уверены, что хотите удалить {{ user_to_delete.username }}</b>
+        <form action="{% url 'admin:users_delete' user_to_delete.pk %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="удалить">
+        </form>
+        <button class="btn btn-success">
+            <a href="{% url 'admin:users_index' %}">отмена</a>
+        </button>
+    </div>
+{% endblock %}
+

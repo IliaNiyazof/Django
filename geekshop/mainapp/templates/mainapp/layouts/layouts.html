@@ -1,0 +1,29 @@
+{% extends 'mainapp/index.html' %}
+
+{% load static %}
+
+{% block menu %}
+
+{% include "mainapp/widgets/menu.html" %}
+
+{% endblock %}
+
+
+{% block content %}
+
+<div class="conteiner">
+    <p>Добро подаловать в магазин медицинского оборудования DOCTMENT. У нас всегда только самое лучшее и
+        проверенное оборудование.</p>
+    <hr>
+</div>
+
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+{% endblock %}
+
+
+
+
